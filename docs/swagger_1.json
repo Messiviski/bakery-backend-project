@@ -1,0 +1,306 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API Padaria BD1",
+    "version": "1.0.0.",
+    "description": "Projeto para administração de recursos de uma padaria"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Produtos",
+      "description": "Rotas relacionadas a produtos"
+    },
+    {
+      "name": "Ingredientes",
+      "description": "Rotas relacionadas aos ingredientes"
+    },
+    {
+      "name": "Financeiro",
+      "description": "Rotas relacionadas ao financeiro da padaria"
+    }
+  ],
+  "paths": {
+    "/api/register/buy": {
+      "post": {
+        "tags": [
+          "Ingredientes"
+        ],
+        "summary": "Registra compra",
+        "description": "Será responsável por registrar a compra de ingredientes",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "number"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "made_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e a informacao de compra e registrada no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/register/sell": {
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Registra venda",
+        "description": "Será responsável por registrar a venda de produtos",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "made_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e a informacao de compra e registrada no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/register/ingredient": {
+      "post": {
+        "tags": [
+          "Ingredientes"
+        ],
+        "summary": "Registra um Ingrediente",
+        "description": "Será responsável por registrar um ingrediente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e o ingrediente e registrado no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/register/product": {
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Registra um Produto",
+        "description": "Será responsável por registrar um produto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e o produto e registrado no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/register/daily": {
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Registra a producao diaria",
+        "description": "Será responsável por registrar os dados relacionados a producao diaria",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "made_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e a informacao do que foi produzido no dia e registrado no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/financial/{begin}": {
+      "get": {
+        "tags": [
+          "Financeiro"
+        ],
+        "summary": "",
+        "description": "",
+        "parameters": [
+          {
+            "name": "begin",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "buy": {
+                        "type": "number"
+                      },
+                      "sell": {
+                        "type": "number"
+                      },
+                      "date": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "buy": 1500.00,
+                    "sell": 2500.00,
+                    "date": "2022-06-13"
+                  },
+                  {
+                    "buy": 1300.00,
+                    "sell": 3300.00,
+                    "date": "2022-06-14"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

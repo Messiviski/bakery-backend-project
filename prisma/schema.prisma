@@ -3,7 +3,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Fornecedor {
+model fornecedor {
   id      Int    @id @default(autoincrement())
   nome    String
   empresa String

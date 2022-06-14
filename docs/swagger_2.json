@@ -1,0 +1,404 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API Padaria BD1",
+    "version": "1.0.0.",
+    "description": "Projeto para administração de recursos de uma padaria"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Produtos",
+      "description": "Rotas relacionadas a produtos"
+    },
+    {
+      "name": "Ingredientes",
+      "description": "Rotas relacionadas aos ingredientes"
+    },
+    {
+      "name": "Financeiro",
+      "description": "Rotas relacionadas ao financeiro da padaria"
+    }
+  ],
+  "paths": {
+    "/api/buy": {
+      "post": {
+        "tags": [
+          "Ingredientes"
+        ],
+        "summary": "Registra compra",
+        "description": "Será responsável por registrar a compra de ingredientes",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "number"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "made_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e a informacao de compra e registrada no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sell": {
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Registra venda",
+        "description": "Será responsável por registrar a venda de produtos",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "made_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e a informacao de compra e registrada no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ingredient": {
+      "post": {
+        "tags": [
+          "Ingredientes"
+        ],
+        "summary": "Registra um Ingrediente",
+        "description": "Será responsável por registrar um ingrediente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e o ingrediente e registrado no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Ingredientes"
+        ],
+        "summary": "Lista todos os ingredientes",
+        "description": "Lista todos os ingredientes cadastrados no sistema",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "margarina",
+                    "amount": 10
+                  },
+                  {
+                    "name": "fermento",
+                    "amount": 17
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/product": {
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Registra um Produto",
+        "description": "Será responsável por registrar um produto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e o produto e registrado no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Lista todos os produtos",
+        "description": "Lista todos os produtos que foram cadastrados no sistema",
+        "responses": {
+          "200": {
+            "description": "Quando a lista de produtos é retornada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": ["pao_frances", "bolo_ingles", "pao_doce"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/daily": {
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Registra a producao diaria",
+        "description": "Sera responsavel por registrar os dados relacionados a producao diaria",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "made_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Quando todos os parametros estao corretos e a informacao do que foi produzido no dia e registrado no sistema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/daily/{begin}": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Lista a producao em um dia",
+        "description": "Lista tudo o que foi produzido em uma data",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quando uma data valida e enviada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "pao_frances",
+                    "amount": 10,
+                    "date": "2022-06-13",
+                    "made_at": "07:00:00"
+                  },
+                  {
+                    "name": "pao_doce",
+                    "amount": 22,
+                    "date": "2022-06-13",
+                    "made_at": "09:00:00"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/financial/{begin}": {
+      "get": {
+        "tags": [
+          "Financeiro"
+        ],
+        "summary": "",
+        "description": "",
+        "parameters": [
+          {
+            "name": "begin",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "buy": {
+                        "type": "number"
+                      },
+                      "sell": {
+                        "type": "number"
+                      },
+                      "date": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "buy": 1500.00,
+                    "sell": 2500.00,
+                    "date": "2022-06-13"
+                  },
+                  {
+                    "buy": 1300.00,
+                    "sell": 3300.00,
+                    "date": "2022-06-14"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
