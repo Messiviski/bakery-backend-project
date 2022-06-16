@@ -1,5 +1,0 @@
-class TransactionService {
-
-}
-
-export { TransactionService };
