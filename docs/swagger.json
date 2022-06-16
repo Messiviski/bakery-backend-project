@@ -25,7 +25,7 @@
     }
   ],
   "paths": {
-    "/api/register/buy": {
+    "/api/buy": {
       "post": {
         "tags": [
           "Ingredientes"
@@ -65,8 +65,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "success"
+                  "type": "object"
                 }
               }
             }
@@ -74,7 +73,7 @@
         }
       }
     },
-    "/api/register/sell": {
+    "/api/sell": {
       "post": {
         "tags": [
           "Produtos"
@@ -108,8 +107,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "success"
+                  "type": "object"
                 }
               }
             }
@@ -117,7 +115,7 @@
         }
       }
     },
-    "/api/register/ingredient": {
+    "/api/ingredient": {
       "post": {
         "tags": [
           "Ingredientes"
@@ -148,16 +146,47 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "success"
+                  "type": "object"
                 }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Ingredientes"
+        ],
+        "summary": "Lista todos os ingredientes",
+        "description": "Lista todos os ingredientes cadastrados no sistema",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "margarina",
+                    "amount": 10
+                  },
+                  {
+                    "name": "fermento",
+                    "amount": 17
+                  }
+                ]
               }
             }
           }
         }
       }
     },
-    "/api/register/product": {
+    "/api/product": {
       "post": {
         "tags": [
           "Produtos"
@@ -185,22 +214,65 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "success"
+                  "type": "object"
                 }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Lista todos os produtos",
+        "description": "Lista todos os produtos que foram cadastrados no sistema",
+        "responses": {
+          "200": {
+            "description": "Quando a lista de produtos é retornada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "id": 0,
+                    "name": "pao_frances"
+                  },
+                  {
+                    "id": 1,
+                    "name": "bolo_ingles"
+                  },
+                  {
+                    "id": 2,
+                    "name": "pao_doce"
+                  }
+                ]
               }
             }
           }
         }
       }
     },
-    "/api/register/daily": {
+    "/api/daily": {
       "post": {
         "tags": [
           "Produtos"
         ],
         "summary": "Registra a producao diaria",
-        "description": "Será responsável por registrar os dados relacionados a producao diaria",
+        "description": "Sera responsavel por registrar os dados relacionados a producao diaria",
         "requestBody": {
           "required": true,
           "content": {
@@ -208,6 +280,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "number"
+                  },
                   "amount": {
                     "type": "number"
                   },
@@ -228,9 +303,56 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "success"
+                  "type": "object"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/daily/{begin}": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Lista a producao em um dia",
+        "description": "Lista tudo o que foi produzido em uma data",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quando uma data valida e enviada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "pao_frances",
+                    "amount": 10,
+                    "date": "2022-06-13",
+                    "made_at": "07:00:00"
+                  },
+                  {
+                    "name": "pao_doce",
+                    "amount": 22,
+                    "date": "2022-06-13",
+                    "made_at": "09:00:00"
+                  }
+                ]
               }
             }
           }

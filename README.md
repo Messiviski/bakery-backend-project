@@ -1,5 +1,10 @@
 # Projeto BD 1
 
+**Antes de começar a trabalhar em uma nova funcionalidade, crie uma branch com a descrição da tarefa que será feita**
+- Exemplo:
+  - *feat/add-ingredients-route*
+  - *feat/add-products-route*
+
 ### Iniciando o projeto
 Antes de tudo é necessário ter o **yarn** instalado na máquina;
 
@@ -8,7 +13,7 @@ Para instalar todas as dependências é necessário executar o seguinte comando:
   
 Caso seja necessário adicionar alguma dependência execute o seguinte comando:
 - `yarn add nome-do-pacote`
-
+  
 ### Comandos Prisma
 Sempre que alguma alteração for feita no schema do prisma esses dois comandos precisam ser executados
 - `yarn prisma format`
