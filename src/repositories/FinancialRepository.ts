@@ -1,4 +1,5 @@
 import { Buy, PrismaClient, Sell } from "@prisma/client";
+import { ICreateBuyInfoDTO, ICreateSellInfoDTO } from "../dtos/IFinancialDTO";
 
 class FinancialRepository {
   private prisma: PrismaClient;
@@ -7,7 +8,7 @@ class FinancialRepository {
     this.prisma = new PrismaClient();
   }
 
-  async saveSell({ amount, date, time, productId }: Sell): Promise<Sell> {
+  async saveSell({ amount, date, time, productId }: ICreateSellInfoDTO): Promise<Sell> {
     const newSell = await this.prisma.sell.create({
       data: {
         amount,
@@ -20,7 +21,7 @@ class FinancialRepository {
     return newSell;
   }
 
-  async saveBuy({ date, time, ingredientId }: Buy): Promise<Buy> {
+  async saveBuy({ date, time, ingredientId }: ICreateBuyInfoDTO): Promise<Buy> {
     const newBuy = await this.prisma.buy.create({
       data: {
         date,

@@ -91,7 +91,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "productId": {
                     "type": "number"
                   },
                   "amount": {
