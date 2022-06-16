@@ -3,8 +3,80 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model fornecedor {
-  id      Int    @id @default(autoincrement())
-  nome    String
-  empresa String
+model Buy {
+  id           Int      @id @default(autoincrement())
+  date         DateTime @db.Date
+  time         DateTime @db.Time
+  ingredientId Int
+
+  Ingredient Ingredient @relation(fields: [ingredientId], references: [id])
+}
+
+model Ingredient {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(50)
+  amount Int
+
+  buy      Buy[]
+  products ProductsOnIngredients[]
+}
+
+model Product {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50)
+
+  ingredients     ProductsOnIngredients[]
+  dailyProduction DailyProduction[]
+  sell            Sell[]
+  waste           Waste[]
+  prediction Prediction[]
+}
+
+model ProductsOnIngredients {
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId Int
+  product      Product    @relation(fields: [productId], references: [id])
+  productId    Int
+  amount       Int
+
+  id Int @id @default(autoincrement())
+}
+
+model DailyProduction {
+  id        Int      @id @default(autoincrement())
+  amount    Int
+  date      DateTime @db.Date
+  time      DateTime @db.Time()
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Sell {
+  id        Int      @id @default(autoincrement())
+  amount    Int
+  date      DateTime @db.Date
+  time      DateTime @db.Time()
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Waste {
+  id        Int      @id @default(autoincrement())
+  amount    Int
+  date      DateTime @db.Date
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Prediction {
+  id Int @id @default(autoincrement())
+  date DateTime @db.Date
+  time DateTime @db.Time()
+  amount Int
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
 }

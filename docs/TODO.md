@@ -5,10 +5,10 @@
 - Registrar os ingredientes **OK**
 - Registrar os produtos **OK**
 - Registrar a producao diaria **OK**
-- Listagem de ingredientes
-- Listagem de produtos
-- Listar compra e venda semanalmente
-  - `http://localhost:3333/api/financial?begin='2021-02-02'&end='2021-02-03'`
+- Listagem de ingredientes OK
+- Listagem de produtos OK
+- Listar compra e venda semanalmente Ok 
+  - `http://localhost:3333/api/financial/'2021-02-02'?end='2021-02-03'`
 
 ### JOBS
 
