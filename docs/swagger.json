@@ -22,6 +22,10 @@
     {
       "name": "Financeiro",
       "description": "Rotas relacionadas ao financeiro da padaria"
+    },
+    {
+      "name": "Produtos e Ingredientes",
+      "description": "Rotas relacionadas tanto com produtos como com ingredientes"
     }
   ],
   "paths": {
@@ -323,7 +327,7 @@
         "description": "Lista tudo o que foi produzido em uma data",
         "parameters": [
           {
-            "name": "date",
+            "name": "begin",
             "in": "path",
             "required": true,
             "schema": {
@@ -419,6 +423,65 @@
                     "buy": 1300.00,
                     "sell": 3300.00,
                     "date": "2022-06-14"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/product/{productId}/ingredients": {
+      "get": {
+        "tags": [
+          "Produtos e Ingredientes"
+        ],
+        "summary": "Lista a receita de um produto",
+        "description": "",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ingredients": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "amount": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "id": 0,
+                    "name": "farinha_de_trigo",
+                    "amount": 10
+                  },
+                  {
+                    "id": 1,
+                    "name": "margarina",
+                    "amount": 15
                   }
                 ]
               }
