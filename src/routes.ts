@@ -2,6 +2,6 @@ import { Router } from "express";
 
 const routes = Router();
 
-routes.get("");
+routes.get("/sell");
 
 export { routes };
