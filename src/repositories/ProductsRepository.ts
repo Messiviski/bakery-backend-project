@@ -40,6 +40,12 @@ class ProductsRepository {
 
     return product;
   }
+
+  async list(): Promise<Product[]> {
+    const products = await this.prisma.product.findMany()
+
+    return products;
+  }
 }
 
 export { ProductsRepository };
