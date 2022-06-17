@@ -4,7 +4,7 @@ class ProductsRepository {
   private prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient;
+    this.prisma = new PrismaClient();
   }
 
   async save(name: string ): Promise<Product> {
