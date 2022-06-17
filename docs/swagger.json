@@ -20,12 +20,16 @@
       "description": "Rotas relacionadas aos ingredientes"
     },
     {
-      "name": "Financeiro",
-      "description": "Rotas relacionadas ao financeiro da padaria"
-    },
-    {
       "name": "Produtos e Ingredientes",
       "description": "Rotas relacionadas tanto com produtos como com ingredientes"
+    },
+    {
+      "name": "Desperdicio",
+      "description": "Rotas relacionadas ao desperdicio de materiais"
+    },
+    {
+      "name": "Previsao",
+      "description": "Rotas relacionadas a previsão para uso de recursos"
     }
   ],
   "paths": {
@@ -52,11 +56,8 @@
                   "amount": {
                     "type": "number"
                   },
-                  "date": {
-                    "type": "string"
-                  },
-                  "made_at": {
-                    "type": "string"
+                  "timestamp": {
+                    "type": "number"
                   }
                 }
               }
@@ -70,6 +71,51 @@
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buy/{date}": {
+      "get": {
+        "tags": [
+          "Ingredientes"
+        ],
+        "summary": "Lista todas as compras em um dia",
+        "description": "Sera responsavel por listar todas as compras realizadas em um dia",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      },
+                      "made_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -97,11 +143,8 @@
                   "amount": {
                     "type": "number"
                   },
-                  "date": {
-                    "type": "string"
-                  },
-                  "made_at": {
-                    "type": "string"
+                  "timestamp": {
+                    "type": "number"
                   }
                 }
               }
@@ -115,6 +158,54 @@
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sell/{date}": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Lista todas as vendas em um dia",
+        "description": "Sera responsavel por listar todas as vendas realizadas em um dia",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      },
+                      "made_at": {
+                        "type": "string"
+                      },
+                      "provider_name": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -136,9 +227,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "amount": {
-                    "type": "number"
-                  },
                   "name": {
                     "type": "string"
                   }
@@ -154,6 +242,22 @@
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "This ingredient already exists!"
+                    }
+                  }
                 }
               }
             }
@@ -179,10 +283,12 @@
                 },
                 "example": [
                   {
+                    "id": 0,
                     "name": "margarina",
                     "amount": 10
                   },
                   {
+                    "id": 1,
                     "name": "fermento",
                     "amount": 17
                   }
@@ -209,6 +315,20 @@
                 "properties": {
                   "name": {
                     "type": "string"
+                  },
+                  "ingredients": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "amount": {
+                          "type": "number"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -222,6 +342,22 @@
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "This product already exists!"
+                    }
+                  }
                 }
               }
             }
@@ -287,17 +423,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "productId": {
                     "type": "number"
                   },
                   "amount": {
                     "type": "number"
                   },
-                  "date": {
-                    "type": "string"
-                  },
-                  "made_at": {
-                    "type": "string"
+                  "timestamp": {
+                    "type": "number"
                   }
                 }
               }
@@ -318,7 +451,7 @@
         }
       }
     },
-    "/api/daily/{begin}": {
+    "/api/daily/{date}": {
       "get": {
         "tags": [
           "Produtos"
@@ -327,7 +460,7 @@
         "description": "Lista tudo o que foi produzido em uma data",
         "parameters": [
           {
-            "name": "begin",
+            "name": "date",
             "in": "path",
             "required": true,
             "schema": {
@@ -350,79 +483,12 @@
                   {
                     "name": "pao_frances",
                     "amount": 10,
-                    "date": "2022-06-13",
                     "made_at": "07:00:00"
                   },
                   {
                     "name": "pao_doce",
                     "amount": 22,
-                    "date": "2022-06-13",
                     "made_at": "09:00:00"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/financial/{begin}": {
-      "get": {
-        "tags": [
-          "Financeiro"
-        ],
-        "summary": "",
-        "description": "",
-        "parameters": [
-          {
-            "name": "begin",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "end",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "buy": {
-                        "type": "number"
-                      },
-                      "sell": {
-                        "type": "number"
-                      },
-                      "date": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                },
-                "example": [
-                  {
-                    "buy": 1500.00,
-                    "sell": 2500.00,
-                    "date": "2022-06-13"
-                  },
-                  {
-                    "buy": 1300.00,
-                    "sell": 3300.00,
-                    "date": "2022-06-14"
                   }
                 ]
               }
@@ -484,6 +550,80 @@
                     "amount": 15
                   }
                 ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/waste/{date}": {
+      "get": {
+        "tags": [
+          "Desperdicio"
+        ],
+        "summary": "Lista todas os desperdicios em um dia",
+        "description": "Sera responsavel por listar todas os desperdicios em um dia",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prediction": {
+      "get": {
+        "tags": [
+          "Previsao"
+        ],
+        "summary": "Lista todas as previsoes em um dia",
+        "description": "Sera responsavel por listar todas as previsoes em um dia",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
               }
             }
           }

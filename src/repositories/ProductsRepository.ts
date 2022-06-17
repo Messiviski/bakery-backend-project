@@ -7,7 +7,7 @@ class ProductsRepository {
     this.prisma = new PrismaClient();
   }
 
-  async save(name: string ): Promise<Product> {
+  async save(name: string): Promise<Product> {
     const newProduct = await this.prisma.product.create({
       data: {
         name
