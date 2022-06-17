@@ -6,7 +6,7 @@ interface IRequest {
   name: string;
 }
 
-class RegisterIngredientServices {
+class RegisterIngredientService {
   private ingredientsRepository: IngredientsRepository;
 
   constructor() {
@@ -17,7 +17,7 @@ class RegisterIngredientServices {
     const ingredient = await this.ingredientsRepository.findByName(name);
 
     if (ingredient) {
-      throw new AppError("This product alredy exists!");
+      throw new AppError("This ingredient alredy exists!");
     }
 
     await this.ingredientsRepository.save({ amount, name });
@@ -26,4 +26,4 @@ class RegisterIngredientServices {
   }
 }
 
-export { RegisterIngredientServices };
+export { RegisterIngredientService };

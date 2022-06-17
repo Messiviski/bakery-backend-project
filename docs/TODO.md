@@ -1,12 +1,12 @@
 ### Rotas
 
 - Registrar a compra **OK**
-- Registrar a venda **OK**
-- Registrar os ingredientes **OK**
-- Registrar os produtos **OK**
+- Registrar a venda **OK** **WIP**
+- Registrar os ingredientes **OK** **OK**
+- Registrar os produtos **OK** **OK**
 - Registrar a producao diaria **OK**
-- Listagem de ingredientes OK
-- Listagem de produtos OK
+- Listagem de ingredientes **OK**
+- Listagem de produtos **OK**
 - Listar compra e venda semanalmente Ok 
   - `http://localhost:3333/api/financial/'2021-02-02'?end='2021-02-03'`
 

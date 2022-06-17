@@ -34,7 +34,7 @@ class IngredientsRepository {
   async findByName(name: string): Promise<Ingredient | null> {
     const ingredient = await this.prisma.ingredient.findFirst({
       where: {
-        id: {
+        name: {
           equals: name
         }
       }
