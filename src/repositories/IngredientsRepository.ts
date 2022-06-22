@@ -12,8 +12,8 @@ class IngredientsRepository {
     const newIngredient = await this.prisma.ingredient.create({
       data: {
         amount,
-        name
-      }
+        name,
+      },
     });
 
     return newIngredient;
@@ -23,9 +23,9 @@ class IngredientsRepository {
     const ingredient = await this.prisma.ingredient.findFirst({
       where: {
         id: {
-          equals: id
-        }
-      }
+          equals: id,
+        },
+      },
     });
 
     return ingredient;
@@ -35,12 +35,18 @@ class IngredientsRepository {
     const ingredient = await this.prisma.ingredient.findFirst({
       where: {
         name: {
-          equals: name
-        }
-      }
+          equals: name,
+        },
+      },
     });
 
     return ingredient;
+  }
+
+  async list(): Promise<Ingredient[]> {
+    const ingredients = await this.prisma.ingredient.findMany();
+
+    return ingredients;
   }
 }
 
