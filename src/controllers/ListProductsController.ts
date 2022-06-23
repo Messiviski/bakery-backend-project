@@ -6,6 +6,8 @@ class ListProductsController {
     const listProductsService = new ListProductsService();
     const products = await listProductsService.execute();
 
+    console.log("Controller", products)
+
     return response.status(200).json(products);
   }
 }

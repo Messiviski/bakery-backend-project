@@ -64,6 +64,21 @@ class FinancialRepository {
 
     return buyData;
   }
+
+  async findSalesByProductIdAndDate(id: number, date: Date): Promise<Sell[]> {
+    const sales = await this.prisma.sell.findMany({
+      where: {
+        productId: {
+          equals: id
+        },
+        date: {
+          equals: date
+        }
+      }
+    });
+
+    return sales;
+  }
 }
 
 export { FinancialRepository };

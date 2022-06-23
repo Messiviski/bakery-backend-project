@@ -27,11 +27,6 @@ class RegisterBuyService{
 
     const fullDate = new Date(timestamp);
 
-    await this.ingredientsRepository.update(
-      ingredientId,
-      (ingredient.amount + amount)
-    );
-
     await this.financialRepository.saveBuy({
       ingredientId,
       date: fullDate,
@@ -39,6 +34,11 @@ class RegisterBuyService{
       amount,
       providerName
     })
+
+    await this.ingredientsRepository.update(
+      ingredientId,
+      (ingredient.amount + amount)
+    );
 
     return {};
   }
