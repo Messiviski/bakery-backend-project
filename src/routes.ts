@@ -3,12 +3,14 @@ import { Router } from "express";
 import { RegisterIngredientController } from "./controllers/RegisterIngredientController";
 import { RegisterProductController } from "./controllers/RegisterProductController";
 import { RegisterSellController } from "./controllers/RegisterSellController";
+import { RegisterDailyProductionController } from "./controllers/RegisterDailyProductionController";
 
 import { ListProductsController } from "./controllers/ListProductsController";
 import { ListIngredientsController } from "./controllers/ListIngredientsController";
 import { ListSalesController } from "./controllers/ListSalesController";
 import { RegisterBuyController } from "./controllers/RegisterBuyController";
 import { ListProductsIngredientsController } from "./controllers/ListProductsIngredientsController";
+import { ListDailyProductionByDateController } from "./controllers/ListDailyProductionByDateController";
 
 const routes = Router();
 
@@ -20,6 +22,8 @@ const getAllIngredientsController = new ListIngredientsController();
 const listSalesController = new ListSalesController();
 const registerBuyController = new RegisterBuyController();
 const listProductsIngredientsController = new ListProductsIngredientsController();
+const registerDailyProductionController = new RegisterDailyProductionController();
+const listDailyProductionByDateController = new ListDailyProductionByDateController();
 
 routes.post("/sell", registerSellController.handle);
 routes.get("/sell/:date", listSalesController.handle);
@@ -33,6 +37,10 @@ routes.get("/product", getAllProductsController.handle);
 // INGREDIENTS
 routes.post("/ingredient", registerIngredientController.handle);
 routes.get("/ingredient", getAllIngredientsController.handle);
+
+// DAILY PRODUCTION
+routes.post("/daily", registerDailyProductionController.handle);
+routes.get("/daily/:date", listDailyProductionByDateController.handle);
 
 routes.get("/product/:productId/ingredients", listProductsIngredientsController.handle);
 
