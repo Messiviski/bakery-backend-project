@@ -50,7 +50,7 @@
                   "provider_name": {
                     "type": "string"
                   },
-                  "type": {
+                  "ingredientId": {
                     "type": "number"
                   },
                   "amount": {
@@ -321,7 +321,7 @@
                     "items": {
                       "type": "object",
                       "properties": {
-                        "id": {
+                        "ingredientId": {
                           "type": "number"
                         },
                         "amount": {

@@ -53,7 +53,7 @@ class FinancialRepository {
     return sellData;
   }
 
-  async findBuyInfoByDate({ date }: Buy): Promise<Buy[]> {
+  async findBuyInfoByDate(date: Date): Promise<Buy[]> {
     const buyData = await this.prisma.buy.findMany({
       where: {
         date: {

@@ -20,8 +20,6 @@ class RegisterSellService {
   async execute({ amount, timestamp, productId }: IRequest): Promise<Object> {
     const product = await this.productsRepository.findById(productId)
 
-    console.log(product)
-
     if(!product) {
       throw new AppError("Products does not exists!")
     }

@@ -6,9 +6,7 @@ class ListBuysController {
     const { date } = request.params;
     const listBuysService = new ListBuysService();
     
-
     const buys = await listBuysService.execute(new Date(date));
-
 
     return response.status(200).json(buys);
   }

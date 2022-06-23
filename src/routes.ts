@@ -11,6 +11,7 @@ import { ListSalesController } from "./controllers/ListSalesController";
 import { RegisterBuyController } from "./controllers/RegisterBuyController";
 import { ListProductsIngredientsController } from "./controllers/ListProductsIngredientsController";
 import { ListDailyProductionByDateController } from "./controllers/ListDailyProductionByDateController";
+import { ListBuysController } from "./controllers/ListBuysController";
 
 const routes = Router();
 
@@ -21,6 +22,7 @@ const getAllProductsController = new ListProductsController();
 const getAllIngredientsController = new ListIngredientsController();
 const listSalesController = new ListSalesController();
 const registerBuyController = new RegisterBuyController();
+const listBuysController = new ListBuysController();
 const listProductsIngredientsController = new ListProductsIngredientsController();
 const registerDailyProductionController = new RegisterDailyProductionController();
 const listDailyProductionByDateController = new ListDailyProductionByDateController();
@@ -29,6 +31,7 @@ routes.post("/sell", registerSellController.handle);
 routes.get("/sell/:date", listSalesController.handle);
 
 routes.post("/buy", registerBuyController.handle);
+routes.get("/buy/:date", listBuysController.handle);
 
 // PRODUCTS
 routes.post("/product", registerProductController.handle);
