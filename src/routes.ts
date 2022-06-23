@@ -6,6 +6,7 @@ import { RegisterDailyProductionController } from "./controllers/RegisterDailyPr
 import { Router } from "express";
 import { ListProductsController } from "./controllers/ListProductsController";
 import { ListIngredientsController } from "./controllers/ListIngredientsController";
+import { ListDailyProductionByDateController } from "./controllers/ListDailyProductionByDateController";
 
 const routes = Router();
 const registerSellController = new RegisterSellController();
@@ -14,6 +15,7 @@ const registerIngredientController = new RegisterIngredientController();
 const getAllProductsController = new ListProductsController();
 const getAllIngredientsController = new ListIngredientsController();
 const registerDailyProductionController = new RegisterDailyProductionController();
+const listDailyProductionByDateController = new ListDailyProductionByDateController();
 
 routes.post("/sell", registerSellController.handle);
 
@@ -27,5 +29,6 @@ routes.get("/ingredient", getAllIngredientsController.handle);
 
 // DAILY PRODUCTION
 routes.post("/daily", registerDailyProductionController.handle);
+routes.get("/daily/:date", listDailyProductionByDateController.handle);
 
 export { routes };

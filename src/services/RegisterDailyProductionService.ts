@@ -1,9 +1,9 @@
-import { AppError } from "../shared/errors/AppError";
 import { DailyProductionRepository } from "../repositories/DailyProductionRepository";
-import { ICreateDailyProductionDTO } from "../dtos/IDailyProductionDTO";
 
-interface IRequest {
-  data: ICreateDailyProductionDTO
+interface IRequest { 
+  productId: number;
+  amount: number;
+  timestamp: string;
 }
 
 class RegisterDailyProductionService {
@@ -13,12 +13,15 @@ class RegisterDailyProductionService {
     this.dailyProductionRepository = new DailyProductionRepository();
   }
 
-  async execute({ data }: IRequest): Promise<Object> {
-    const DailyProduction = await this.dailyProductionRepository.findById(data.productId);
+  async execute({ productId, amount, timestamp }: IRequest): Promise<Object> {
+    const fullDate = new Date(timestamp)
 
-    if (DailyProduction) throw new AppError("This product already exists!");
-
-    await this.dailyProductionRepository.save(data);
+    await this.dailyProductionRepository.save({
+      productId,
+      amount,
+      date: fullDate,
+      time: fullDate
+    });
 
     return {};
   }

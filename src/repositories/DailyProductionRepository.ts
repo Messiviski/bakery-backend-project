@@ -1,5 +1,5 @@
 import { PrismaClient, DailyProduction } from "@prisma/client";
-import { ICreateDailyProductionDTO , IUpdateDailyProductionDTO } from "../dtos/IDailyProductionDTO";
+import { ICreateDailyProductionDTO } from "../dtos/IDailyProductionDTO";
 
 class DailyProductionRepository {
   private prisma: PrismaClient;
@@ -21,19 +21,19 @@ class DailyProductionRepository {
     return produced;
   }
 
-  async findByDate({ date }: DailyProduction): Promise< DailyProduction[]> {
+  async findByDate( date: Date ): Promise< DailyProduction[]> {
     const produced = await this.prisma.dailyProduction.findMany({
       where: {
         date: { 
           equals: date
         }
       }
-    });
+    })
 
     return produced;
   }
 
-  async findById(productId: number): Promise<DailyProduction | null> {
+  async findByProduct(productId: number): Promise<DailyProduction | null> {
     const dailyProduction = await this.prisma.dailyProduction.findFirst({
       where: {
         productId: {
@@ -44,10 +44,6 @@ class DailyProductionRepository {
 
     return dailyProduction;
   }
-  // async updateDailyProduction(id, { amount, date, time, productId}: IUpdateDailyProductionDTO): Promise<void>{
-  //   const updateDailyProduction = await this.prisma.dailyProduction.merge(id,amount, date, time, productId);
-  //   return this.prisma.dailyProduction.save(id);
-  // }
 }
 
 export { DailyProductionRepository };
