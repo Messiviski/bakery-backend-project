@@ -1,5 +1,4 @@
 import { PrismaClient, Ingredient } from "@prisma/client";
-import { ICreateIngredientDTO } from "../dtos/IIngredientDTO";
 
 class IngredientsRepository {
   private prisma: PrismaClient;
@@ -8,10 +7,10 @@ class IngredientsRepository {
     this.prisma = new PrismaClient();
   }
 
-  async save({ name, amount }: ICreateIngredientDTO): Promise<Ingredient> {
+  async save( name: string ): Promise<Ingredient> {
     const newIngredient = await this.prisma.ingredient.create({
       data: {
-        amount,
+        amount: 0,
         name
       }
     });
@@ -42,6 +41,12 @@ class IngredientsRepository {
 
     return ingredient;
   }
+
+  async list(): Promise<Ingredient[]> {
+    const ingredients = await this.prisma.ingredient.findMany();
+
+    return ingredients;
+  } 
 }
 
 export { IngredientsRepository };

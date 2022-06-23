@@ -10,6 +10,7 @@ interface ICreateBuyInfoDTO {
   date: Date;
   time: Date;
   ingredientId: number;
+  providerName: string;
 }
 
 export { ICreateSellInfoDTO, ICreateBuyInfoDTO };

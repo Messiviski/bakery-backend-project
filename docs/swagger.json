@@ -113,6 +113,9 @@
                       },
                       "made_at": {
                         "type": "string"
+                      },
+                      "provider_name": {
+                        "type": "string"
                       }
                     }
                   }
@@ -199,9 +202,6 @@
                         "type": "number"
                       },
                       "made_at": {
-                        "type": "string"
-                      },
-                      "provider_name": {
                         "type": "string"
                       }
                     }
