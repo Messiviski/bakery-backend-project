@@ -21,13 +21,16 @@ class RegisterBuyService{
   async execute({ amount, timestamp, ingredientId, providerName }: IRequest): Promise<Object>{
     const ingredient = await this.ingredientsRepository.findById(ingredientId)
 
-    console.log(ingredient)
-
     if(!ingredient) {
       throw new AppError("The ingredient does not exists!")
     }
 
     const fullDate = new Date(timestamp);
+
+    await this.ingredientsRepository.update(
+      ingredientId,
+      (ingredient.amount + amount)
+    );
 
     await this.financialRepository.saveBuy({
       ingredientId,

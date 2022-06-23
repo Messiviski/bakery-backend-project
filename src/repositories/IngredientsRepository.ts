@@ -47,6 +47,17 @@ class IngredientsRepository {
 
     return ingredients;
   }
+
+  async update(ingredientId: number, amount: number): Promise<void> {
+    await this.prisma.ingredient.update({
+      where: {
+        id: ingredientId,
+      },
+      data: {
+        amount,
+      },
+    });
+  }
 }
 
 export { IngredientsRepository };
