@@ -5,7 +5,8 @@ import { AppError } from "../shared/errors/AppError";
 interface IRequest {
   amount: number,
   timestamp: number,
-  ingredientId: number
+  ingredientId: number,
+  providerName: string
 }
 
 class RegisterBuyService{
@@ -17,24 +18,26 @@ class RegisterBuyService{
     this.ingredientsRepository = new IngredientsRepository();
   }
 
-  async execute({ amount, timestamp, ingredientId }: IRequest): Promise<Object>{
+  async execute({ amount, timestamp, ingredientId, providerName }: IRequest): Promise<Object>{
     const ingredient = await this.ingredientsRepository.findById(ingredientId)
 
     console.log(ingredient)
 
     if(!ingredient) {
-      throw new AppError("Ingredients does not exists!")
+      throw new AppError("The ingredient does not exists!")
     }
 
     const fullDate = new Date(timestamp);
 
     await this.financialRepository.saveBuy({
-      productId,
+      ingredientId,
       date: fullDate,
-      time: fullDate
+      time: fullDate,
+      amount,
+      providerName
     })
 
-    return{};
+    return {};
   }
 } 
 

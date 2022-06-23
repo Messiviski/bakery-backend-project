@@ -8,7 +8,7 @@ class FinancialRepository {
     this.prisma = new PrismaClient();
   }
 
-  async saveSell({ amount, date, time, productId }: ICreateSellInfoDTO): Promise<Sell> {
+  async saveSale({ amount, date, time, productId }: ICreateSellInfoDTO): Promise<Sell> {
     const newSell = await this.prisma.sell.create({
       data: {
         amount,
@@ -21,19 +21,27 @@ class FinancialRepository {
     return newSell;
   }
 
-  async saveBuy({ date, time, ingredientId }: ICreateBuyInfoDTO): Promise<Buy> {
+  async saveBuy({
+    date,
+    time,
+    ingredientId,
+    amount,
+    providerName 
+  }: ICreateBuyInfoDTO): Promise<Buy> {
     const newBuy = await this.prisma.buy.create({
       data: {
         date,
         time,
-        ingredientId
+        amount,
+        ingredientId,
+        providerName
       }
     })
 
     return newBuy;
   }
 
-  async findSellInfoByDate({ date }: Sell): Promise<Sell[]> {
+  async findSaleInfoByDate(date: Date): Promise<Sell[]> {
     const sellData = await this.prisma.sell.findMany({
       where: {
         date: {

@@ -11,6 +11,8 @@ model Buy {
   id           Int      @id @default(autoincrement())
   date         DateTime @db.Date
   time         DateTime @db.Time
+  amount       Int
+  providerName String
   ingredientId Int
 
   Ingredient Ingredient @relation(fields: [ingredientId], references: [id])
@@ -37,13 +39,13 @@ model Product {
 }
 
 model ProductsOnIngredients {
+  id Int @id @default(autoincrement())
+
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
   ingredientId Int
   product      Product    @relation(fields: [productId], references: [id])
   productId    Int
   amount       Int
-
-  id Int @id @default(autoincrement())
 }
 
 model DailyProduction {
