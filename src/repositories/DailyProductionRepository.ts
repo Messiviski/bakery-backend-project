@@ -44,6 +44,27 @@ class DailyProductionRepository {
 
     return dailyProduction;
   }
+
+  async findByProductIdAndDate(productId: number, date: Date): Promise<DailyProduction[]> {
+    const dailyProduction = await this.prisma.dailyProduction.findMany({
+      where: {
+        productId: {
+          equals: productId
+        },
+        date: {
+          equals: date
+        }
+      }
+    });
+
+    return dailyProduction;
+  }
+
+  async list(): Promise<DailyProduction[]> {
+    const productions = await this.prisma.dailyProduction.findMany();
+
+    return productions;
+  }
 }
 
 export { DailyProductionRepository };
