@@ -28,7 +28,7 @@ class RegisterSellService {
 
     const fullDate = new Date(timestamp);
 
-    await this.financialRepository.saveSell({
+    await this.financialRepository.saveSale({
       amount,
       productId,
       date: fullDate,

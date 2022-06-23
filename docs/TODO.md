@@ -18,9 +18,9 @@ Realiza predição da produção no dia seguinte, deve ser feito diariamente
     - Rota da rota de *produto*
   - Rota de listagem de todas as producoes em um dia **TODO**
 - Compra (Vidal)
-  - Rota para cadastrar uma nova compra **TODO**
+  - Rota para cadastrar uma nova compra **DONE**
     - Precisa da rota de *ingrediente*
-  - Rota de listagem de todas as compras em um dia**TODO**
+  - Rota de listagem de todas as compras em um dia **TODO**
 - Ingrediente (Erick)
   - Rota para cadastrar um novo produto **WIP**
   - Rota de listagem **TODO**
