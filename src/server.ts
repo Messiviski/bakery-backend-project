@@ -3,8 +3,11 @@ import "express-async-errors";
 import { routes } from "./routes";
 import { AppError } from "./shared/errors/AppError";
 import HandleCronJobs from "./shared/utils/HandleCronJobs";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors())
 
 app.use(express.json());
 

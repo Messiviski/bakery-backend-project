@@ -5,9 +5,10 @@ import { RegisterPredictionService } from "../../services/RegisterPredictionServ
 export default () => {
   const handleProductsWasteService = new HandleProductsWasteService();
 
-  cron.schedule("* * * * MON-FRI", () => {
+  cron.schedule("0 23 * * MON-FRI", () => {
+    console.log("DISPATCHING WASTE JOB...")
     handleProductsWasteService.execute()
-  });
+  }).start();
 
   // cron.schedule("0 22 * * MON-FRI", () => {
   
